@@ -9,7 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const manageButton = document.getElementById("manageButton");
   const settingsButton = document.getElementById("settingsButton");
   const addAppButton = document.getElementById("addAppButton");
-
+const chooseBackgroundPhoto = document.getElementById("chooseBackgroundPhoto");
+const removeBackgroundPhoto = document.getElementById("removeBackgroundPhoto");
+const backgroundPhotoInput = document.getElementById("backgroundPhotoInput");
   const themePreviews = document.querySelectorAll(".theme-preview");
   const closeButtons = document.querySelectorAll("[data-close-modal]");
 
@@ -130,7 +132,55 @@ document.addEventListener("DOMContentLoaded", () => {
       }, 120);
     });
   });
+  /* =========================
+     사진 배경
+  ========================= */
 
+  const savedPhoto = localStorage.getItem("joonBackgroundPhoto");
+
+  if (savedPhoto) {
+    applyPhotoBackground(savedPhoto);
+  }
+
+  function applyPhotoBackground(imageData) {
+    body.classList.add("photo-background");
+    body.style.backgroundImage = `url("${imageData}")`;
+  }
+
+  function removePhotoBackground() {
+    body.classList.remove("photo-background");
+    body.style.backgroundImage = "";
+    localStorage.removeItem("joonBackgroundPhoto");
+  }
+
+  chooseBackgroundPhoto?.addEventListener("click", () => {
+    backgroundPhotoInput?.click();
+  });
+
+  backgroundPhotoInput?.addEventListener("change", (event) => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const imageData = reader.result;
+
+      if (typeof imageData !== "string") return;
+
+      localStorage.setItem("joonBackgroundPhoto", imageData);
+      applyPhotoBackground(imageData);
+      closeModals();
+    };
+
+    reader.readAsDataURL(file);
+  });
+
+  removeBackgroundPhoto?.addEventListener("click", () => {
+    removePhotoBackground();
+    closeModals();
+  });
   /* =========================
      페이지 점
   ========================= */
