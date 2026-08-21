@@ -355,7 +355,73 @@
       </button>
     </div>
   </div>
+<div class="modal hidden" id="digitalCardModal">
+  <div class="modal-handle"></div>
 
+  <div class="modal-header">
+    <h3>디지털 명함</h3>
+
+    <button
+      class="close-button"
+      type="button"
+      data-close-modal
+    >
+      ×
+    </button>
+  </div>
+
+  <div class="modal-content">
+
+    <p class="modal-description">
+      내 디지털 명함을 확인하거나 상대방에게 간편하게 공유할 수 있습니다.
+    </p>
+
+    <div class="digital-card-actions">
+
+      <button
+        class="primary-action"
+        type="button"
+        id="openDigitalCardButton"
+      >
+        내 명함 보기
+      </button>
+
+      <button
+        class="secondary-action"
+        type="button"
+        id="showDigitalCardQrButton"
+      >
+        QR 코드 보기
+      </button>
+
+      <button
+        class="secondary-action"
+        type="button"
+        id="shareDigitalCardButton"
+      >
+        공유하기
+      </button>
+
+      <button
+        class="secondary-action"
+        type="button"
+        id="copyDigitalCardLinkButton"
+      >
+        링크 복사
+      </button>
+
+      <button
+        class="secondary-action"
+        type="button"
+        id="shareVcardButton"
+      >
+        연락처 공유
+      </button>
+
+    </div>
+
+  </div>
+</div>
   <script src="app.js?v=2"></script>
 </body>
 </html>
