@@ -14,7 +14,12 @@ const removeBackgroundPhoto = document.getElementById("removeBackgroundPhoto");
 const backgroundPhotoInput = document.getElementById("backgroundPhotoInput");
   const themePreviews = document.querySelectorAll(".theme-preview");
   const closeButtons = document.querySelectorAll("[data-close-modal]");
-
+const digitalCardModal = document.getElementById("digitalCardModal");
+const openDigitalCardButton = document.getElementById("openDigitalCardButton");
+const showDigitalCardQrButton = document.getElementById("showDigitalCardQrButton");
+const shareDigitalCardButton = document.getElementById("shareDigitalCardButton");
+const copyDigitalCardLinkButton = document.getElementById("copyDigitalCardLinkButton");
+const shareVcardButton = document.getElementById("shareVcardButton");
   const todayDate = document.getElementById("todayDate");
   const todayDay = document.getElementById("todayDay");
 
@@ -210,9 +215,14 @@ const backgroundPhotoInput = document.getElementById("backgroundPhotoInput");
   ========================= */
 
   const appCards = document.querySelectorAll(".app-card");
-
-  appCards.forEach((card) => {
+appCards.forEach((card) => {
+  
     card.addEventListener("click", () => {
+      if (card.dataset.id === "digital-card") {
+  digitalCardModal?.removeAttribute("hidden");
+  modalBackdrop?.removeAttribute("hidden");
+  return;
+}
       const url = card.dataset.url;
 
       if (url && url !== "#") {
