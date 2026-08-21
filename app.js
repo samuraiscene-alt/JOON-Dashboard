@@ -1,12 +1,172 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const cards = document.querySelectorAll(".project-card");
+  const body = document.body;
 
-  cards.forEach((card) => {
+  const themeButton = document.getElementById("themeButton");
+  const themeModal = document.getElementById("themeModal");
+  const manageModal = document.getElementById("manageModal");
+  const modalBackdrop = document.getElementById("modalBackdrop");
+
+  const manageButton = document.getElementById("manageButton");
+  const settingsButton = document.getElementById("settingsButton");
+  const addAppButton = document.getElementById("addAppButton");
+
+  const themePreviews = document.querySelectorAll(".theme-preview");
+  const closeButtons = document.querySelectorAll("[data-close-modal]");
+
+  const todayDate = document.getElementById("todayDate");
+  const todayDay = document.getElementById("todayDay");
+
+  const dots = document.querySelectorAll(".dot");
+  const pages = document.querySelectorAll(".app-page");
+
+  /* =========================
+     날짜 표시
+  ========================= */
+
+  const now = new Date();
+
+  const month = now.getMonth() + 1;
+  const date = now.getDate();
+
+  const dayNames = [
+    "일요일",
+    "월요일",
+    "화요일",
+    "수요일",
+    "목요일",
+    "금요일",
+    "토요일"
+  ];
+
+  if (todayDate) {
+    todayDate.textContent = `${month}.${date}`;
+  }
+
+  if (todayDay) {
+    todayDay.textContent = dayNames[now.getDay()];
+  }
+
+  /* =========================
+     모달
+  ========================= */
+
+  function openModal(modal) {
+    if (!modal) return;
+
+    modal.classList.remove("hidden");
+    modalBackdrop.classList.remove("hidden");
+  }
+
+  function closeModals() {
+    themeModal?.classList.add("hidden");
+    manageModal?.classList.add("hidden");
+    modalBackdrop?.classList.add("hidden");
+  }
+
+  themeButton?.addEventListener("click", () => {
+    openModal(themeModal);
+  });
+
+  settingsButton?.addEventListener("click", () => {
+    openModal(themeModal);
+  });
+
+  manageButton?.addEventListener("click", () => {
+    openModal(manageModal);
+  });
+
+  addAppButton?.addEventListener("click", () => {
+    openModal(manageModal);
+  });
+
+  modalBackdrop?.addEventListener("click", closeModals);
+
+  closeButtons.forEach((button) => {
+    button.addEventListener("click", closeModals);
+  });
+
+  /* =========================
+     테마 변경
+  ========================= */
+
+  const savedTheme = localStorage.getItem("joonTheme");
+
+  if (savedTheme) {
+    applyTheme(savedTheme);
+  }
+
+  function applyTheme(theme) {
+    body.classList.remove(
+      "theme-navy",
+      "theme-gray",
+      "theme-ivory"
+    );
+
+    if (theme === "navy") {
+      body.classList.add("theme-navy");
+    }
+
+    if (theme === "gray") {
+      body.classList.add("theme-gray");
+    }
+
+    if (theme === "ivory") {
+      body.classList.add("theme-ivory");
+    }
+
+    localStorage.setItem("joonTheme", theme);
+  }
+
+  themePreviews.forEach((button) => {
+    button.addEventListener("click", () => {
+      const theme = button.dataset.theme;
+
+      if (!theme) return;
+
+      applyTheme(theme);
+
+      setTimeout(() => {
+        closeModals();
+      }, 120);
+    });
+  });
+
+  /* =========================
+     페이지 점
+  ========================= */
+
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const pageNumber = dot.dataset.page;
+
+      pages.forEach((page) => {
+        page.classList.toggle(
+          "active",
+          page.dataset.page === pageNumber
+        );
+      });
+
+      dots.forEach((item) => {
+        item.classList.toggle(
+          "active",
+          item.dataset.page === pageNumber
+        );
+      });
+    });
+  });
+
+  /* =========================
+     기능 카드
+  ========================= */
+
+  const appCards = document.querySelectorAll(".app-card");
+
+  appCards.forEach((card) => {
     card.addEventListener("click", () => {
-      const name = card.dataset.name;
+      const url = card.dataset.url;
 
-      if (name) {
-        console.log(`${name} 열기`);
+      if (url && url !== "#") {
+        window.location.href = url;
       }
     });
   });
