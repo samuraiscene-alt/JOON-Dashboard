@@ -6,43 +6,90 @@
 
 :root {
   --bg: #0f1115;
-  --card: #1a1d24;
+  --card: #181b21;
+  --card-2: #20242c;
+
   --text: #ffffff;
   --subtext: #9da3ae;
-  --accent: #4da3ff;
+
+  --accent: #f4c542;
+
   --border: rgba(255, 255, 255, 0.10);
+  --soft: rgba(255, 255, 255, 0.06);
+
+  --radius: 22px;
 }
 
-html,
-body {
-  min-height: 100%;
+html {
+  background: var(--bg);
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    "SF Pro Text",
+    "Segoe UI",
+    sans-serif;
 
   background: var(--bg);
   color: var(--text);
 
   -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
 }
+
+button {
+  font: inherit;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* =========================================================
+   APP
+========================================================= */
 
 .app-shell {
   width: 100%;
   max-width: 520px;
+
   min-height: 100vh;
 
   margin: 0 auto;
-  padding: 24px 20px 50px;
+
+  padding:
+    calc(env(safe-area-inset-top) + 22px)
+    20px
+    calc(env(safe-area-inset-bottom) + 110px);
 }
+
+/* =========================================================
+   HEADER
+========================================================= */
 
 .top-header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
 
-  margin-bottom: 36px;
+  margin-bottom: 28px;
 }
 
 .brand-wrap {
@@ -52,140 +99,649 @@ body {
 }
 
 .brand-mark {
-  width: 48px;
-  height: 48px;
+  width: 54px;
+  height: 54px;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
-  border-radius: 16px;
+  border-radius: 18px;
 
-  background: var(--text);
-  color: var(--bg);
+  background: #ffffff;
+  color: #111318;
 
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 900;
 }
 
 .brand-text h1 {
-  font-size: 24px;
-  font-weight: 800;
-  letter-spacing: -0.5px;
+  font-size: 27px;
+  line-height: 1;
+  font-weight: 900;
+  letter-spacing: -0.8px;
 }
 
 .brand-text p {
-  margin-top: 3px;
+  margin-top: 6px;
 
   color: var(--subtext);
+
   font-size: 14px;
+  font-weight: 600;
 }
 
-.dashboard-title {
-  margin-bottom: 22px;
-}
-
-.dashboard-title h2 {
-  font-size: 34px;
-  font-weight: 850;
-  letter-spacing: -1px;
-}
-
-.dashboard-title p {
-  margin-top: 8px;
-
-  color: var(--subtext);
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-.project-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 16px;
-}
-
-.project-card {
-  position: relative;
-
-  display: block;
-
-  padding: 22px;
-
-  border: 1px solid var(--border);
-  border-radius: 22px;
-
-  background: var(--card);
-
-  color: var(--text);
-  text-decoration: none;
-
-  transition:
-    transform 0.18s ease,
-    border-color 0.18s ease;
-}
-
-.project-card:active {
-  transform: scale(0.98);
-}
-
-.project-icon {
-  width: 52px;
-  height: 52px;
+.icon-button {
+  width: 46px;
+  height: 46px;
 
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
 
-  margin-bottom: 20px;
+  padding: 12px;
 
-  border-radius: 17px;
+  border: 1px solid var(--border);
+  border-radius: 15px;
 
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--card);
+  color: var(--text);
 
-  font-size: 26px;
+  cursor: pointer;
 }
 
-.project-card h3 {
-  font-size: 21px;
+/* =========================================================
+   WELCOME
+========================================================= */
+
+.welcome-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  gap: 18px;
+
+  margin-bottom: 32px;
+}
+
+.eyebrow {
+  margin-bottom: 7px;
+
+  color: var(--subtext);
+
+  font-size: 12px;
+  font-weight: 800;
+
+  letter-spacing: 1.3px;
+}
+
+.welcome-card h2 {
+  max-width: 290px;
+
+  font-size: 25px;
+  line-height: 1.3;
+
+  font-weight: 850;
+  letter-spacing: -0.8px;
+}
+
+.date-box {
+  min-width: 65px;
+
+  text-align: right;
+}
+
+.date-box span {
+  display: block;
+
+  font-size: 16px;
   font-weight: 800;
 }
 
-.project-card p {
-  margin-top: 8px;
-  padding-right: 30px;
+.date-box small {
+  display: block;
 
-  color: var(--subtext);
-
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-.arrow {
-  position: absolute;
-
-  right: 20px;
-  top: 50%;
-
-  transform: translateY(-50%);
-
-  color: var(--subtext);
-
-  font-size: 25px;
-}
-
-.footer {
-  margin-top: 40px;
-
-  text-align: center;
+  margin-top: 3px;
 
   color: var(--subtext);
 
   font-size: 12px;
 }
 
-@media (min-width: 600px) {
-  .project-grid {
-    grid-template-columns: 1fr 1fr;
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+
+.quick-section,
+.apps-section {
+  margin-bottom: 34px;
+}
+
+.section-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 14px;
+}
+
+.section-title-row h3 {
+  font-size: 19px;
+  font-weight: 850;
+  letter-spacing: -0.4px;
+}
+
+.text-button {
+  border: 0;
+
+  background: transparent;
+  color: var(--subtext);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.add-button {
+  width: 32px;
+  height: 32px;
+
+  border: 1px solid var(--border);
+  border-radius: 11px;
+
+  background: var(--card);
+  color: var(--text);
+
+  font-size: 22px;
+  line-height: 1;
+}
+
+/* =========================================================
+   QUICK ACTION
+========================================================= */
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.quick-item {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 13px 4px 10px;
+
+  border: 1px solid var(--border);
+  border-radius: 18px;
+
+  background: var(--card);
+  color: var(--text);
+
+  cursor: pointer;
+}
+
+.quick-item:active {
+  transform: scale(0.96);
+}
+
+.quick-icon {
+  width: 30px;
+  height: 30px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--accent);
+}
+
+.quick-item > span:last-child {
+  font-size: 12px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+/* =========================================================
+   APP PAGES
+========================================================= */
+
+.pages-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.app-page {
+  display: none;
+}
+
+.app-page.active {
+  display: block;
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 12px;
+}
+
+.app-card {
+  position: relative;
+
+  min-height: 126px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 16px 8px;
+
+  border: 1px solid var(--border);
+  border-radius: 22px;
+
+  background: var(--card);
+  color: var(--text);
+
+  cursor: pointer;
+
+  overflow: hidden;
+}
+
+.app-card:active {
+  transform: scale(0.97);
+}
+
+.app-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: var(--accent);
+}
+
+.app-name {
+  max-width: 100%;
+
+  font-size: 13px;
+  line-height: 1.25;
+
+  font-weight: 750;
+
+  text-align: center;
+
+  word-break: keep-all;
+}
+
+.lotto-symbol {
+  width: 42px;
+  height: 42px;
+
+  border: 2px solid currentColor;
+  border-radius: 50%;
+
+  font-size: 20px;
+  font-weight: 900;
+}
+
+/* =========================================================
+   PAGE DOTS
+========================================================= */
+
+.page-dots {
+  display: flex;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 17px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: #494e58;
+}
+
+.dot.active {
+  width: 20px;
+
+  border-radius: 999px;
+
+  background: var(--accent);
+}
+
+/* =========================================================
+   STATUS
+========================================================= */
+
+.status-card {
+  display: flex;
+  align-items: center;
+
+  gap: 14px;
+
+  margin-top: 24px;
+
+  padding: 18px;
+
+  border: 1px solid var(--border);
+  border-radius: 20px;
+
+  background: var(--card);
+}
+
+.status-icon {
+  flex: 0 0 38px;
+
+  width: 38px;
+  height: 38px;
+
+  padding: 7px;
+
+  border-radius: 13px;
+
+  background: var(--soft);
+
+  color: var(--accent);
+}
+
+.status-text {
+  min-width: 0;
+}
+
+.status-text strong {
+  display: block;
+
+  font-size: 14px;
+  font-weight: 850;
+}
+
+.status-text span {
+  display: block;
+
+  margin-top: 4px;
+
+  color: var(--subtext);
+
+  font-size: 12px;
+  line-height: 1.45;
+}
+
+/* =========================================================
+   BOTTOM NAV
+========================================================= */
+
+.bottom-nav {
+  position: fixed;
+
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom) + 12px);
+
+  transform: translateX(-50%);
+
+  width: calc(100% - 28px);
+  max-width: 490px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  padding: 9px 8px;
+
+  border: 1px solid var(--border);
+  border-radius: 24px;
+
+  background: rgba(24, 27, 33, 0.96);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  z-index: 50;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  gap: 4px;
+
+  padding: 6px 2px;
+
+  border: 0;
+
+  background: transparent;
+  color: var(--subtext);
+}
+
+.nav-item svg {
+  width: 23px;
+  height: 23px;
+}
+
+.nav-item span {
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.nav-item.active {
+  color: var(--accent);
+}
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal-backdrop {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, 0.58);
+
+  z-index: 80;
+}
+
+.modal {
+  position: fixed;
+
+  left: 50%;
+  bottom: 0;
+
+  transform: translateX(-50%);
+
+  width: 100%;
+  max-width: 520px;
+
+  padding:
+    10px
+    20px
+    calc(env(safe-area-inset-bottom) + 28px);
+
+  border-radius: 28px 28px 0 0;
+
+  background: #1b1e24;
+
+  z-index: 90;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.modal-handle {
+  width: 42px;
+  height: 5px;
+
+  margin: 0 auto 18px;
+
+  border-radius: 999px;
+
+  background: #555a64;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h3 {
+  font-size: 21px;
+  font-weight: 850;
+}
+
+.close-button {
+  width: 38px;
+  height: 38px;
+
+  border: 0;
+  border-radius: 50%;
+
+  background: var(--soft);
+  color: var(--text);
+
+  font-size: 26px;
+  line-height: 1;
+}
+
+.modal-content {
+  padding-top: 20px;
+}
+
+.modal-description {
+  color: var(--subtext);
+
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+.theme-preview-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+.theme-preview {
+  height: 58px;
+
+  border: 2px solid rgba(255, 255, 255, 0.14);
+  border-radius: 16px;
+}
+
+.theme-black {
+  background: #0f1115;
+}
+
+.theme-navy {
+  background: #162033;
+}
+
+.theme-gray {
+  background: #36393f;
+}
+
+.theme-ivory {
+  background: #efe9dd;
+}
+
+.primary-action {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 15px;
+
+  border: 0;
+  border-radius: 16px;
+
+  background: var(--accent);
+  color: #111318;
+
+  font-weight: 850;
+  font-size: 15px;
+}
+
+/* =========================================================
+   LIGHT / FUTURE THEMES
+========================================================= */
+
+body.theme-navy {
+  --bg: #101927;
+  --card: #192436;
+  --card-2: #233149;
+}
+
+body.theme-gray {
+  --bg: #2d3036;
+  --card: #383c44;
+  --card-2: #424751;
+}
+
+body.theme-ivory {
+  --bg: #ede7db;
+  --card: #f7f2e9;
+  --card-2: #ffffff;
+
+  --text: #1c1d20;
+  --subtext: #696b70;
+
+  --border: rgba(0, 0, 0, 0.10);
+  --soft: rgba(0, 0, 0, 0.05);
+}
+
+/* =========================================================
+   SMALL IPHONE
+========================================================= */
+
+@media (max-width: 380px) {
+  .app-shell {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .welcome-card h2 {
+    font-size: 22px;
+  }
+
+  .quick-grid {
+    gap: 7px;
+  }
+
+  .quick-item > span:last-child {
+    font-size: 11px;
+  }
+
+  .app-grid {
+    gap: 9px;
+  }
+
+  .app-card {
+    min-height: 116px;
+  }
+
+  .app-name {
+    font-size: 12px;
   }
 }
