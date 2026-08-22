@@ -295,6 +295,7 @@ copyDigitalCardLinkButton?.addEventListener("click", async () => {
   }
 });
 shareVcardButton?.addEventListener("click", async () => {
+  alert("연락처 공유 버튼 작동");
   const vcard = [
     "BEGIN:VCARD",
     "VERSION:3.0",
