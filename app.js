@@ -252,4 +252,22 @@ showDigitalCardQrButton?.addEventListener("click", () => {
 
   digitalCardQrCode.appendChild(qrImage);
 });
+shareDigitalCardButton?.addEventListener("click", async () => {
+  const cardUrl = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
+
+  if (navigator.share) {
+    try {
+      await navigator.share({
+        title: "신이준 디지털 명함",
+        text: "신이준의 디지털 명함입니다.",
+        url: cardUrl
+      });
+    } catch (error) {
+      console.log("공유 취소:", error);
+    }
+  } else {
+    await navigator.clipboard.writeText(cardUrl);
+    alert("디지털 명함 링크가 복사되었습니다.");
+  }
+});
 });
