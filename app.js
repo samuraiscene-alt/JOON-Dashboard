@@ -230,4 +230,7 @@ modalBackdrop?.classList.remove("hidden");
       }
     });
   });
+  openDigitalCardButton?.addEventListener("click", () => {
+  window.location.href = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
+});
 });
