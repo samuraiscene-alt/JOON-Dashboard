@@ -17,7 +17,10 @@ const backgroundPhotoInput = document.getElementById("backgroundPhotoInput");
 const digitalCardModal = document.getElementById("digitalCardModal");
 const openDigitalCardButton = document.getElementById("openDigitalCardButton");
 const showDigitalCardQrButton = document.getElementById("showDigitalCardQrButton");
-const shareDigitalCardButton = document.getElementById("shareDigitalCardButton");
+const digitalCardQrArea = document.getElementById("digitalCardQrArea");
+const digitalCardQrCode = document.getElementById("digitalCardQrCode");
+  
+  const shareDigitalCardButton = document.getElementById("shareDigitalCardButton");
 const copyDigitalCardLinkButton = document.getElementById("copyDigitalCardLinkButton");
 const shareVcardButton = document.getElementById("shareVcardButton");
   const todayDate = document.getElementById("todayDate");
@@ -232,5 +235,21 @@ modalBackdrop?.classList.remove("hidden");
   });
   openDigitalCardButton?.addEventListener("click", () => {
   window.location.href = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
+});
+showDigitalCardQrButton?.addEventListener("click", () => {
+  const cardUrl = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
+
+  if (!digitalCardQrArea || !digitalCardQrCode) return;
+
+  digitalCardQrArea.hidden = false;
+  digitalCardQrCode.innerHTML = "";
+
+  const qrImage = document.createElement("img");
+  qrImage.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
+    encodeURIComponent(cardUrl);
+  qrImage.alt = "신이준 디지털 명함 QR 코드";
+
+  digitalCardQrCode.appendChild(qrImage);
 });
 });
