@@ -275,10 +275,23 @@ copyDigitalCardLinkButton?.addEventListener("click", async () => {
   const cardUrl = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
 
   try {
-    await navigator.clipboard.writeText(cardUrl);
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(cardUrl);
+    } else {
+      const textArea = document.createElement("textarea");
+      textArea.value = cardUrl;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      document.execCommand("copy");
+      textArea.remove();
+    }
+
     alert("디지털 명함 링크가 복사되었습니다.");
   } catch (error) {
-    console.log("링크 복사 실패:", error);
+    alert("링크 복사에 실패했습니다.");
   }
 });
 });
