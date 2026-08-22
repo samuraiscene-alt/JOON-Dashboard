@@ -294,4 +294,46 @@ copyDigitalCardLinkButton?.addEventListener("click", async () => {
     alert("링크 복사에 실패했습니다.");
   }
 });
+shareVcardButton?.addEventListener("click", async () => {
+  const vcard = [
+    "BEGIN:VCARD",
+    "VERSION:3.0",
+    "N:신;이준;;;",
+    "FN:신이준",
+    "TEL;TYPE=CELL:010-5222-7428",
+    "EMAIL;TYPE=INTERNET:samuraiscene@gmail.com",
+    "URL:https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/",
+    "END:VCARD"
+  ].join("\r\n");
+
+  const blob = new Blob([vcard], {
+    type: "text/vcard;charset=utf-8"
+  });
+
+  const file = new File(
+    [blob],
+    "신이준.vcf",
+    { type: "text/vcard;charset=utf-8" }
+  );
+
+  try {
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({
+        title: "신이준 연락처",
+        files: [file]
+      });
+    } else {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "신이준.vcf";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+  } catch (error) {
+    console.log("연락처 공유 취소:", error);
+  }
+});
 });
