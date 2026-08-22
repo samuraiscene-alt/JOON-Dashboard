@@ -803,4 +803,26 @@ body.photo-background .icon-button {
     font-size: 12px;
   }
 }
+/* 명함 QR / 연락처 QR 가운데 정렬 */
+#digitalCardQrArea,
+#contactQrArea {
+  width: 100%;
+  text-align: center;
+}
 
+#digitalCardQrCode,
+#contactQrCode {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+#digitalCardQrCode img,
+#contactQrCode img {
+  display: block;
+  margin: 0 auto;
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+}
