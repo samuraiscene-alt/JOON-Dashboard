@@ -253,6 +253,43 @@ showDigitalCardQrButton?.addEventListener("click", () => {
 
   digitalCardQrCode.appendChild(qrImage);
 });
+  const showContactQrButton = document.getElementById("showContactQrButton");
+const contactQrArea = document.getElementById("contactQrArea");
+const contactQrCode = document.getElementById("contactQrCode");
+
+showContactQrButton?.addEventListener("click", () => {
+  if (!contactQrArea || !contactQrCode) return;
+
+  if (!contactQrArea.hidden) {
+    contactQrArea.hidden = true;
+    showContactQrButton.textContent = "연락처 QR";
+    return;
+  }
+
+  const contactVcard = [
+    "BEGIN:VCARD",
+    "VERSION:3.0",
+    "N:신;이준;;;",
+    "FN:신이준",
+    "TEL;TYPE=CELL:010-5222-7428",
+    "EMAIL;TYPE=INTERNET:samuraiscene@gmail.com",
+    "URL:https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/",
+    "END:VCARD"
+  ].join("\r\n");
+
+  contactQrCode.innerHTML = "";
+
+  const qrImage = document.createElement("img");
+  qrImage.src =
+    "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
+    encodeURIComponent(contactVcard);
+
+  qrImage.alt = "신이준 연락처 QR 코드";
+
+  contactQrCode.appendChild(qrImage);
+  contactQrArea.hidden = false;
+  showContactQrButton.textContent = "연락처 QR 닫기";
+});
 shareDigitalCardButton?.addEventListener("click", async () => {
   const cardUrl = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
 
