@@ -264,7 +264,7 @@
         <span>홈</span>
       </button>
 
-      <button class="nav-item" type="button">
+      <button class="nav-item" id="favoritesButton" type="button">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 17.3l-5.2 3 1.4-5.9-4.6-4 6-.5L12 4.5l2.4 5.4 6 .5-4.6 4 1.4 5.9z"></path>
         </svg>
@@ -287,7 +287,24 @@
   </div>
 
   <div class="modal-backdrop hidden" id="modalBackdrop"></div>
+<div class="modal hidden" id="favoritesModal">
+  <div class="modal-handle"></div>
 
+  <div class="modal-header">
+    <h3>즐겨찾기</h3>
+    <button class="close-button" type="button" data-close-modal>
+      ×
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <p class="modal-description">
+      자주 사용하는 기능을 빠르게 실행할 수 있습니다.
+    </p>
+
+    <div id="favoritesList"></div>
+  </div>
+</div>
   <div class="modal hidden" id="themeModal">
     <div class="modal-handle"></div>
 
