@@ -295,7 +295,6 @@ copyDigitalCardLinkButton?.addEventListener("click", async () => {
   }
 });
 shareVcardButton?.addEventListener("click", async () => {
-  
   const vcard = [
     "BEGIN:VCARD",
     "VERSION:3.0",
@@ -311,28 +310,14 @@ shareVcardButton?.addEventListener("click", async () => {
     type: "text/vcard;charset=utf-8"
   });
 
-  const file = new File(
-    [blob],
-    "신이준.vcf",
-    { type: "text/vcard;charset=utf-8" }
-  );
+  const file = new File([blob], "신이준.vcf", {
+    type: "text/vcard;charset=utf-8"
+  });
 
   try {
-    if (navigator.canShare && navigator.canShare({ files: [file] })) {
-      await navigator.share({
-        title: "신이준 연락처",
-        files: [file]
-      });
-    } else {
-      const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "신이준.vcf";
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      URL.revokeObjectURL(url);
-    }
+    await navigator.share({
+      files: [file]
+    });
   } catch (error) {
     console.log("연락처 공유 취소:", error);
   }
