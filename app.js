@@ -242,16 +242,22 @@ showDigitalCardQrButton?.addEventListener("click", () => {
 
   if (!digitalCardQrArea || !digitalCardQrCode) return;
 
-  digitalCardQrArea.hidden = false;
+  if (!digitalCardQrArea.hidden) {
+    digitalCardQrArea.hidden = true;
+    return;
+  }
+
   digitalCardQrCode.innerHTML = "";
 
   const qrImage = document.createElement("img");
   qrImage.src =
     "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
     encodeURIComponent(cardUrl);
+
   qrImage.alt = "신이준 디지털 명함 QR 코드";
 
   digitalCardQrCode.appendChild(qrImage);
+  digitalCardQrArea.hidden = false;
 });
   const showContactQrButton = document.getElementById("showContactQrButton");
 const contactQrArea = document.getElementById("contactQrArea");
