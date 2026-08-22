@@ -219,8 +219,8 @@ appCards.forEach((card) => {
   
     card.addEventListener("click", () => {
       if (card.dataset.id === "digital-card") {
-  digitalCardModal?.removeAttribute("hidden");
-  modalBackdrop?.removeAttribute("hidden");
+  digitalCardModal?.classList.remove("hidden");
+modalBackdrop?.classList.remove("hidden");
   return;
 }
       const url = card.dataset.url;
