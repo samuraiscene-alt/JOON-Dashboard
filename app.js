@@ -271,4 +271,14 @@ shareDigitalCardButton?.addEventListener("click", async () => {
     alert("디지털 명함 링크가 복사되었습니다.");
   }
 });
+copyDigitalCardLinkButton?.addEventListener("click", async () => {
+  const cardUrl = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
+
+  try {
+    await navigator.clipboard.writeText(cardUrl);
+    alert("디지털 명함 링크가 복사되었습니다.");
+  } catch (error) {
+    console.log("링크 복사 실패:", error);
+  }
+});
 });
