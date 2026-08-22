@@ -500,7 +500,7 @@ svg {
   max-width: 490px;
 
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
   padding: 9px 8px;
 
