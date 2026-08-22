@@ -70,6 +70,7 @@ const shareVcardButton = document.getElementById("shareVcardButton");
   function closeModals() {
     themeModal?.classList.add("hidden");
     manageModal?.classList.add("hidden");
+    digitalCardModal?.classList.add("hidden");
     modalBackdrop?.classList.add("hidden");
   }
 
