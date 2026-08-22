@@ -295,29 +295,18 @@ copyDigitalCardLinkButton?.addEventListener("click", async () => {
   }
 });
 shareVcardButton?.addEventListener("click", async () => {
-  const vcard = [
-    "BEGIN:VCARD",
-    "VERSION:3.0",
-    "N:신;이준;;;",
-    "FN:신이준",
-    "TEL;TYPE=CELL:010-5222-7428",
-    "EMAIL;TYPE=INTERNET:samuraiscene@gmail.com",
-    "URL:https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/",
-    "END:VCARD"
-  ].join("\r\n");
-
-  const blob = new Blob([vcard], {
-    type: "text/vcard;charset=utf-8"
-  });
-
-  const file = new File([blob], "신이준.vcf", {
-    type: "text/vcard;charset=utf-8"
-  });
-
   try {
+    const response = await fetch("./shinjoon.vcf");
+    const blob = await response.blob();
+
+    const file = new File([blob], "신이준.vcf", {
+      type: "text/vcard"
+    });
+
     await navigator.share({
       files: [file]
     });
+
   } catch (error) {
     console.log("연락처 공유 취소:", error);
   }
