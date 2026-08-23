@@ -843,13 +843,14 @@ body.function-edit-mode .app-card:nth-child(3n) {
 
 @keyframes appJiggle {
   from {
-    transform: rotate(-1.2deg);
+    transform: translateX(-1px) rotate(-3deg);
   }
 
   to {
-    transform: rotate(1.2deg);
+    transform: translateX(1px) rotate(3deg);
   }
 }
+
 /* 기능 편집 + / - 버튼 */
 .favorite-toggle {
   position: absolute;
