@@ -97,9 +97,11 @@ favoritesButton?.addEventListener("click", () => {
 
   addAppButton?.addEventListener("click", () => {
     openModal(manageModal);
+    
   });
 editFunctionsButton?.addEventListener("click", () => {
   isFunctionEditMode = true;
+  document.body.classList.add("function-edit-mode");
   closeModals();
 });
   modalBackdrop?.addEventListener("click", closeModals);
