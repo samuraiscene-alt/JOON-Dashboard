@@ -301,7 +301,57 @@ editFunctionsButton?.addEventListener("click", () => {
       });
     });
   });
+/* =========================
+   페이지 스와이프
+========================= */
 
+const pagesWrapper = document.querySelector(".pages-wrapper");
+
+let swipeStartX = 0;
+let swipeEndX = 0;
+
+function showPage(pageNumber) {
+  pages.forEach((page) => {
+    page.classList.toggle(
+      "active",
+      page.dataset.page === String(pageNumber)
+    );
+  });
+
+  dots.forEach((dot) => {
+    dot.classList.toggle(
+      "active",
+      dot.dataset.page === String(pageNumber)
+    );
+  });
+}
+
+function getCurrentPage() {
+  const activePage = document.querySelector(".app-page.active");
+  return Number(activePage?.dataset.page || 1);
+}
+
+pagesWrapper?.addEventListener("touchstart", (event) => {
+  swipeStartX = event.touches[0].clientX;
+});
+
+pagesWrapper?.addEventListener("touchend", (event) => {
+  swipeEndX = event.changedTouches[0].clientX;
+
+  const distance = swipeEndX - swipeStartX;
+
+  if (Math.abs(distance) < 50) return;
+
+  const currentPage = getCurrentPage();
+
+  if (distance < 0 && currentPage < pages.length) {
+    showPage(currentPage + 1);
+  }
+
+  if (distance > 0 && currentPage > 1) {
+    showPage(currentPage - 1);
+  }
+});
   /* =========================
      기능 카드
   ========================= */
