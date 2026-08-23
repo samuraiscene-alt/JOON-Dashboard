@@ -99,6 +99,7 @@ favoritesButton?.addEventListener("click", () => {
     openModal(manageModal);
   });
 editFunctionsButton?.addEventListener("click", () => {
+  isFunctionEditMode = true;
   closeModals();
 });
   modalBackdrop?.addEventListener("click", closeModals);
@@ -228,7 +229,7 @@ editFunctionsButton?.addEventListener("click", () => {
   /* =========================
      기능 카드
   ========================= */
-
+let isFunctionEditMode = false;
   const appCards = document.querySelectorAll(".app-card");
 appCards.forEach((card) => {
   
