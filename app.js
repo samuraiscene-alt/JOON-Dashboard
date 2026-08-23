@@ -324,6 +324,8 @@ function showPage(pageNumber) {
       dot.dataset.page === String(pageNumber)
     );
   });
+  const offset = (Number(pageNumber) - 1) * -100;
+pagesWrapper.style.transform = `translateX(${offset}%)`;
 }
 
 function getCurrentPage() {
