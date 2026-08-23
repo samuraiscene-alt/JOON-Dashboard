@@ -903,3 +903,14 @@ body.function-edit-mode .favorite-toggle {
 
   z-index: 10;
 }
+#favoritesList {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+#favoritesList .app-card {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+}
