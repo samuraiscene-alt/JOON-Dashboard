@@ -112,7 +112,25 @@ const shareVcardButton = document.getElementById("shareVcardButton");
 
     if (icon) item.appendChild(icon);
     if (name) item.appendChild(name);
+const removeButton = document.createElement("span");
+removeButton.className = "favorite-remove";
+removeButton.textContent = "−";
 
+removeButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+  card.dataset.favorite = "false";
+
+  const originalToggle = card.querySelector(".favorite-toggle");
+  if (originalToggle) originalToggle.textContent = "+";
+
+  saveFavorites();
+  updateMainCards();
+  renderFavorites();
+});
+
+item.appendChild(removeButton);
     item.addEventListener("click", () => {
       closeModals();
       card.click();
