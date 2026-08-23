@@ -238,7 +238,15 @@ appCards.forEach((card) => {
 favoriteToggle.className = "favorite-toggle";
 favoriteToggle.textContent = "+";
 card.appendChild(favoriteToggle);
-  
+  favoriteToggle.addEventListener("touchstart", (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+  const isFavorite = card.dataset.favorite === "true";
+
+  card.dataset.favorite = isFavorite ? "false" : "true";
+  favoriteToggle.textContent = isFavorite ? "+" : "−";
+});
   favoriteToggle.addEventListener("click", (event) => {
   event.stopPropagation();
 
