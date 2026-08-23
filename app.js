@@ -127,7 +127,12 @@ const shareVcardButton = document.getElementById("shareVcardButton");
 
   localStorage.setItem("joonFavorites", JSON.stringify(favoriteIds));
 }
-
+function updateMainCards() {
+  document.querySelectorAll(".apps-section .app-card").forEach((card) => {
+    card.style.display =
+      card.dataset.favorite === "true" ? "none" : "";
+  });
+}
 function loadFavorites() {
   const favoriteIds = JSON.parse(localStorage.getItem("joonFavorites") || "[]");
 
@@ -298,6 +303,8 @@ card.appendChild(favoriteToggle);
   card.dataset.favorite = isFavorite ? "false" : "true";
   favoriteToggle.textContent = isFavorite ? "+" : "−";
     saveFavorites();
+    updateMainCards();
+renderFavorites();
 });
   favoriteToggle.addEventListener("click", (event) => {
   event.stopPropagation();
@@ -307,6 +314,8 @@ card.appendChild(favoriteToggle);
   card.dataset.favorite = isFavorite ? "false" : "true";
   favoriteToggle.textContent = isFavorite ? "+" : "−";
     saveFavorites();
+    updateMainCards();
+renderFavorites();
 });
     card.addEventListener("click", () => {
       if (card.dataset.id === "digital-card") {
