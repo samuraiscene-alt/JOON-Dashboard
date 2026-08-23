@@ -13,7 +13,9 @@ const favoritesModal = document.getElementById("favoritesModal");
   const manageButton = document.getElementById("manageButton");
   const settingsButton = document.getElementById("settingsButton");
   const addAppButton = document.getElementById("addAppButton");
-const chooseBackgroundPhoto = document.getElementById("chooseBackgroundPhoto");
+  const editFunctionsButton = document.getElementById("editFunctionsButton");
+
+  const chooseBackgroundPhoto = document.getElementById("chooseBackgroundPhoto");
 const removeBackgroundPhoto = document.getElementById("removeBackgroundPhoto");
 const backgroundPhotoInput = document.getElementById("backgroundPhotoInput");
   const themePreviews = document.querySelectorAll(".theme-preview");
@@ -96,7 +98,9 @@ favoritesButton?.addEventListener("click", () => {
   addAppButton?.addEventListener("click", () => {
     openModal(manageModal);
   });
-
+editFunctionsButton?.addEventListener("click", () => {
+  closeModals();
+});
   modalBackdrop?.addEventListener("click", closeModals);
 
   closeButtons.forEach((button) => {
