@@ -849,3 +849,31 @@ body.function-edit-mode .app-card:nth-child(3n) {
     transform: rotate(1.2deg);
   }
 }
+/* 기능 편집 + / - 버튼 */
+.favorite-toggle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+
+  width: 26px;
+  height: 26px;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+  color: #111;
+
+  font-size: 20px;
+  font-weight: 900;
+  line-height: 1;
+
+  z-index: 5;
+}
+
+body.function-edit-mode .favorite-toggle {
+  display: flex;
+}
