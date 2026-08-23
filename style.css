@@ -827,7 +827,11 @@ body.photo-background .icon-button {
   height: auto;
 }
 /* 기능 편집 모드 - 아이폰 스타일 흔들림 */
-
+body.function-edit-mode .app-card .app-icon {
+  display: inline-flex;
+    animation: appJiggle 0.18s ease-in-out infinite alternate;
+    transform-origin: center center;
+}
 
 body.function-edit-mode .app-card:nth-child(even) {
   animation-delay: 0.06s;
