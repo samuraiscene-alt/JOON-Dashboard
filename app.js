@@ -4,6 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
   const themeButton = document.getElementById("themeButton");
   const themeModal = document.getElementById("themeModal");
   const manageModal = document.getElementById("manageModal");
+ 
+  const favoritesButton = document.getElementById("favoritesButton");
+const favoritesModal = document.getElementById("favoritesModal");
+  
   const modalBackdrop = document.getElementById("modalBackdrop");
 
   const manageButton = document.getElementById("manageButton");
@@ -71,6 +75,7 @@ const shareVcardButton = document.getElementById("shareVcardButton");
     themeModal?.classList.add("hidden");
     manageModal?.classList.add("hidden");
     digitalCardModal?.classList.add("hidden");
+    favoritesModal?.classList.add("hidden");
     modalBackdrop?.classList.add("hidden");
   }
 
@@ -81,7 +86,9 @@ const shareVcardButton = document.getElementById("shareVcardButton");
   settingsButton?.addEventListener("click", () => {
     openModal(themeModal);
   });
-
+favoritesButton?.addEventListener("click", () => {
+  openModal(favoritesModal);
+});
   manageButton?.addEventListener("click", () => {
     openModal(manageModal);
   });
