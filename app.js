@@ -7,7 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
  
   const favoritesButton = document.getElementById("favoritesButton");
 const favoritesModal = document.getElementById("favoritesModal");
-  
+  const favoritesList = document.getElementById("favoritesList");
   const modalBackdrop = document.getElementById("modalBackdrop");
 
   const manageButton = document.getElementById("manageButton");
