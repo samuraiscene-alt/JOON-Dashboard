@@ -234,7 +234,10 @@ editFunctionsButton?.addEventListener("click", () => {
 let isFunctionEditMode = false;
   const appCards = document.querySelectorAll(".app-card");
 appCards.forEach((card) => {
-  
+  const favoriteToggle = document.createElement("span");
+favoriteToggle.className = "favorite-toggle";
+favoriteToggle.textContent = "+";
+card.appendChild(favoriteToggle);
     card.addEventListener("click", () => {
       if (card.dataset.id === "digital-card") {
   digitalCardModal?.classList.remove("hidden");
