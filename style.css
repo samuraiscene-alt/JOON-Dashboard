@@ -855,8 +855,8 @@ body.function-edit-mode .app-card:nth-child(3n) {
 /* 기능 편집 + / - 버튼 */
 .favorite-toggle {
   position: absolute;
-top: 52px;
-right: 82px;
+top: 49px;
+right: 77px;
 
   width: 26px;
   height: 26px;
