@@ -88,6 +88,57 @@ const shareVcardButton = document.getElementById("shareVcardButton");
   settingsButton?.addEventListener("click", () => {
     openModal(themeModal);
   });
+  function renderFavorites() {
+  if (!favoritesList) return;
+
+  favoritesList.innerHTML = "";
+
+  const favoriteCards = document.querySelectorAll(
+    '.app-card[data-favorite="true"]'
+  );
+
+  if (favoriteCards.length === 0) {
+    favoritesList.innerHTML = "<p>등록된 즐겨찾기가 없습니다.</p>";
+    return;
+  }
+
+  favoriteCards.forEach((card) => {
+    const item = document.createElement("button");
+    item.type = "button";
+    item.className = "app-card";
+
+    const icon = card.querySelector(".app-icon")?.cloneNode(true);
+    const name = card.querySelector(".app-name")?.cloneNode(true);
+
+    if (icon) item.appendChild(icon);
+    if (name) item.appendChild(name);
+
+    item.addEventListener("click", () => {
+      closeModals();
+      card.click();
+    });
+
+    favoritesList.appendChild(item);
+  });
+}
+  function saveFavorites() {
+  const favoriteIds = [...document.querySelectorAll('.app-card[data-favorite="true"]')]
+    .map(card => card.dataset.id);
+
+  localStorage.setItem("joonFavorites", JSON.stringify(favoriteIds));
+}
+
+function loadFavorites() {
+  const favoriteIds = JSON.parse(localStorage.getItem("joonFavorites") || "[]");
+
+  document.querySelectorAll(".app-card").forEach(card => {
+    card.dataset.favorite = favoriteIds.includes(card.dataset.id) ? "true" : "false";
+  });
+
+  renderFavorites();
+}
+
+loadFavorites();
 favoritesButton?.addEventListener("click", () => {
   openModal(favoritesModal);
 });
@@ -246,6 +297,7 @@ card.appendChild(favoriteToggle);
 
   card.dataset.favorite = isFavorite ? "false" : "true";
   favoriteToggle.textContent = isFavorite ? "+" : "−";
+    saveFavorites();
 });
   favoriteToggle.addEventListener("click", (event) => {
   event.stopPropagation();
@@ -254,6 +306,7 @@ card.appendChild(favoriteToggle);
 
   card.dataset.favorite = isFavorite ? "false" : "true";
   favoriteToggle.textContent = isFavorite ? "+" : "−";
+    saveFavorites();
 });
     card.addEventListener("click", () => {
       if (card.dataset.id === "digital-card") {
