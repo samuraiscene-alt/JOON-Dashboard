@@ -238,6 +238,15 @@ appCards.forEach((card) => {
 favoriteToggle.className = "favorite-toggle";
 favoriteToggle.textContent = "+";
 card.appendChild(favoriteToggle);
+  
+  favoriteToggle.addEventListener("click", (event) => {
+  event.stopPropagation();
+
+  const isFavorite = card.dataset.favorite === "true";
+
+  card.dataset.favorite = isFavorite ? "false" : "true";
+  favoriteToggle.textContent = isFavorite ? "+" : "−";
+});
     card.addEventListener("click", () => {
       if (card.dataset.id === "digital-card") {
   digitalCardModal?.classList.remove("hidden");
