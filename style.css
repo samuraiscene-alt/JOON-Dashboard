@@ -314,13 +314,15 @@ svg {
 .pages-wrapper {
   position: relative;
   overflow: hidden;
+  touch-action: pan-y;
+}
 
+.pages-track {
   display: flex;
+  width: 100%;
 
   transform: translateX(0);
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-
-  touch-action: pan-y;
 }
 
 .app-page {
