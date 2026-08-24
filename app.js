@@ -119,7 +119,7 @@ removeButton.textContent = "−";
 removeButton.addEventListener("click", (event) => {
   event.preventDefault();
   event.stopPropagation();
-
+triggerHaptic();
   card.dataset.favorite = "false";
 
   const originalToggle = card.querySelector(".favorite-toggle");
@@ -421,7 +421,7 @@ card.appendChild(favoriteToggle);
   favoriteToggle.addEventListener("touchstart", (event) => {
   event.preventDefault();
   event.stopPropagation();
-
+triggerHaptic();
   const isFavorite = card.dataset.favorite === "true";
 
   card.dataset.favorite = isFavorite ? "false" : "true";
