@@ -358,6 +358,29 @@ pagesWrapper?.addEventListener("touchend", (event) => {
      기능 카드
   ========================= */
 let isFunctionEditMode = false;
+  function startFunctionEditMode() {
+  isFunctionEditMode = true;
+  document.body.classList.add("function-edit-mode");
+
+  if (addAppButton) {
+    addAppButton.textContent = "✓";
+    addAppButton.setAttribute("aria-label", "편집 완료");
+  }
+
+  if (navigator.vibrate) {
+    navigator.vibrate(30);
+  }
+}
+
+function stopFunctionEditMode() {
+  isFunctionEditMode = false;
+  document.body.classList.remove("function-edit-mode");
+
+  if (addAppButton) {
+    addAppButton.textContent = "+";
+    addAppButton.setAttribute("aria-label", "기능 추가");
+  }
+}
   const appCards = document.querySelectorAll(".app-card");
 appCards.forEach((card) => {
   const favoriteToggle = document.createElement("span");
