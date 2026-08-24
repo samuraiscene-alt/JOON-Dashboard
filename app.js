@@ -306,7 +306,7 @@ editFunctionsButton?.addEventListener("click", () => {
 ========================= */
 
 const pagesWrapper = document.querySelector(".pages-wrapper");
-
+const pagesTrack = document.querySelector(".pages-track");
 let swipeStartX = 0;
 let swipeEndX = 0;
 
@@ -325,7 +325,7 @@ function showPage(pageNumber) {
     );
   });
   const offset = (Number(pageNumber) - 1) * -100;
-pagesWrapper.style.transform = `translateX(${offset}%)`;
+pagesTrack.style.transform = `translateX(${offset}%)`;
 }
 
 function getCurrentPage() {
