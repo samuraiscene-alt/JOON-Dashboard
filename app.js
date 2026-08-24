@@ -178,10 +178,21 @@ favoritesButton?.addEventListener("click", () => {
   openModal(manageModal);
 });
 editFunctionsButton?.addEventListener("click", () => {
-  isFunctionEditMode = true;
-  document.body.classList.add("function-edit-mode");
+  startFunctionEditMode();
   closeModals();
 });
+  document.addEventListener("click", (event) => {
+  if (!isFunctionEditMode) return;
+
+  if (
+    event.target.closest(".app-card") ||
+    event.target.closest("#addAppButton")
+  ) {
+    return;
+  }
+
+  stopFunctionEditMode();
+}); 
   modalBackdrop?.addEventListener("click", closeModals);
 
   closeButtons.forEach((button) => {
