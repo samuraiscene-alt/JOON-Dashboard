@@ -383,6 +383,22 @@ function stopFunctionEditMode() {
 }
   const appCards = document.querySelectorAll(".app-card");
 appCards.forEach((card) => {
+  let pressTimer = null;
+
+card.addEventListener("touchstart", (event) => {
+  if (event.target.closest(".favorite-toggle")) return;
+
+  pressTimer = setTimeout(() => {
+    startFunctionEditMode();
+  }, 650);
+});
+card.addEventListener("touchend", () => {
+  clearTimeout(pressTimer);
+});
+
+card.addEventListener("touchmove", () => {
+  clearTimeout(pressTimer);
+});
   const favoriteToggle = document.createElement("span");
 favoriteToggle.className = "favorite-toggle";
 favoriteToggle.textContent = "+";
