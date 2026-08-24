@@ -181,7 +181,7 @@ editFunctionsButton?.addEventListener("click", () => {
   startFunctionEditMode();
   closeModals();
 });
-  document.addEventListener("click", (event) => {
+  document.addEventListener("touchend", (event) => {
   if (!isFunctionEditMode) return;
 
   if (
