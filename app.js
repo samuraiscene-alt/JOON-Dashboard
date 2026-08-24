@@ -170,9 +170,13 @@ favoritesButton?.addEventListener("click", () => {
   });
 
   addAppButton?.addEventListener("click", () => {
-    openModal(manageModal);
-    
-  });
+  if (isFunctionEditMode) {
+    stopFunctionEditMode();
+    return;
+  }
+
+  openModal(manageModal);
+});
 editFunctionsButton?.addEventListener("click", () => {
   isFunctionEditMode = true;
   document.body.classList.add("function-edit-mode");
