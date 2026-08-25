@@ -369,7 +369,6 @@ svg {
   
   -webkit-user-select: none;
 user-select: none;
--webkit-touch-callout: none;
 }
 
 .app-card:active {
