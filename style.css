@@ -367,7 +367,11 @@ svg {
 
   overflow: hidden;
 }
-
+body.function-edit-mode .app-card,
+body.function-edit-mode .app-card * {
+  -webkit-user-select: none;
+  user-select: none;
+}
 .app-card:active {
   transform: scale(0.97);
 }
