@@ -34,7 +34,7 @@ const shareVcardButton = document.getElementById("shareVcardButton");
 
   const dots = document.querySelectorAll(".dot");
   const pages = document.querySelectorAll(".app-page");
-
+const quickItems = document.querySelectorAll(".quick-item");
   /* =========================
      날짜 표시
   ========================= */
@@ -61,7 +61,25 @@ const shareVcardButton = document.getElementById("shareVcardButton");
   if (todayDay) {
     todayDay.textContent = dayNames[now.getDay()];
   }
+quickItems.forEach((item) => {
+  item.addEventListener("click", () => {
+    const action = item.dataset.action;
 
+    if (action === "phone") {
+      window.location.href = "tel:01052227428";
+      return;
+    }
+
+    if (action === "message") {
+      window.location.href = "sms:01052227428";
+      return;
+    }
+
+    if (action === "email") {
+      window.location.href = "mailto:samuraiscene@gmail.com";
+    }
+  });
+});
   /* =========================
      모달
   ========================= */
