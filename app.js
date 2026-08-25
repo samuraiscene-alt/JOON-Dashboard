@@ -437,6 +437,20 @@ card.addEventListener("touchstart", (event) => {
 });
 card.addEventListener("touchend", () => {
   clearTimeout(pressTimer);
+
+  if (isFunctionEditMode) {
+    const clearAfterTouch = () => {
+      const selection = window.getSelection();
+      if (selection) {
+        selection.removeAllRanges();
+      }
+    };
+
+    clearAfterTouch();
+    requestAnimationFrame(clearAfterTouch);
+    setTimeout(clearAfterTouch, 50);
+    setTimeout(clearAfterTouch, 150);
+  }
 });
 
 card.addEventListener("touchmove", () => {
