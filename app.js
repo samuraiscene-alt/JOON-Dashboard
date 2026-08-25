@@ -394,10 +394,17 @@ let isFunctionEditMode = false;
   function startFunctionEditMode() {
   isFunctionEditMode = true;
   document.body.classList.add("function-edit-mode");
-const selection = window.getSelection();
-if (selection) {
-  selection.removeAllRanges();
-}
+const clearSelection = () => {
+  const selection = window.getSelection();
+  if (selection) {
+    selection.removeAllRanges();
+  }
+};
+
+clearSelection();
+requestAnimationFrame(clearSelection);
+setTimeout(clearSelection, 100);
+setTimeout(clearSelection, 250);
   if (addAppButton) {
     addAppButton.textContent = "✓";
     addAppButton.setAttribute("aria-label", "편집 완료");
