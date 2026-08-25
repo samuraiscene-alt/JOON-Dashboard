@@ -366,9 +366,6 @@ svg {
   cursor: pointer;
 
   overflow: hidden;
-  
-  -webkit-user-select: none;
-user-select: none;
 }
 
 .app-card:active {
