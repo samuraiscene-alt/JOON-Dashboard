@@ -391,6 +391,12 @@ pagesWrapper?.addEventListener("touchend", (event) => {
      기능 카드
   ========================= */
 let isFunctionEditMode = false;
+  
+  document.addEventListener("selectstart", (event) => {
+  if (event.target.closest(".app-card")) {
+    event.preventDefault();
+  }
+});
   function startFunctionEditMode() {
   isFunctionEditMode = true;
   document.body.classList.add("function-edit-mode");
