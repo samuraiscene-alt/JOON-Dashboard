@@ -267,7 +267,6 @@ function updateMainCards() {
       isFavorite || !isEnabled ? "none" : "";
   });
 }
-}
 function loadFavorites() {
   const favoriteIds = JSON.parse(localStorage.getItem("joonFavorites") || "[]");
 
