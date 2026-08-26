@@ -397,6 +397,12 @@ let isFunctionEditMode = false;
     event.preventDefault();
   }
 });
+
+  document.addEventListener("contextmenu", (event) => {
+  if (event.target.closest(".app-card")) {
+    event.preventDefault();
+  }
+});
   function startFunctionEditMode() {
   isFunctionEditMode = true;
   document.body.classList.add("function-edit-mode");
