@@ -111,12 +111,12 @@ const openGoogleMapButton = document.getElementById("openGoogleMapButton");
     }
     openNaverMapButton?.addEventListener("click", () => {
   closeModals();
-  window.location.href = "https://map.naver.com/";
+  window.location.href = "nmap://";
 });
 
 openGoogleMapButton?.addEventListener("click", () => {
   closeModals();
-  window.location.href = "https://www.google.com/maps";
+  window.location.href = "comgooglemaps://";
 });
   
 
