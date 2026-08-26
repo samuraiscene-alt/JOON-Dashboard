@@ -508,8 +508,58 @@ pagesWrapper?.addEventListener("touchend", (event) => {
   /* =========================
      기능 카드
   ========================= */
-let isFunctionEditMode = false;
-  
+  const appGrids = [
+  document.getElementById("appGridPage1"),
+  document.getElementById("appGridPage2"),
+  document.getElementById("appGridPage3")
+].filter(Boolean);
+
+function saveAppOrder() {
+  const order = {};
+
+  appGrids.forEach((grid) => {
+    order[grid.id] = [...grid.children]
+      .filter((item) => item.classList.contains("app-card"))
+      .map((item) => item.dataset.id);
+  });
+
+  localStorage.setItem(
+    "joonAppOrder",
+    JSON.stringify(order)
+  );
+}
+
+function applySavedAppOrder() {
+  try {
+    const savedOrder = JSON.parse(
+      localStorage.getItem("joonAppOrder")
+    );
+
+    if (!savedOrder) return;
+
+    const cardMap = new Map(
+      [...document.querySelectorAll(".apps-section .app-card")]
+        .map((card) => [card.dataset.id, card])
+    );
+
+    appGrids.forEach((grid) => {
+      const ids = savedOrder[grid.id];
+
+      if (!Array.isArray(ids)) return;
+
+      ids.forEach((id) => {
+        const card = cardMap.get(id);
+
+        if (card) {
+          grid.appendChild(card);
+        }
+      });
+    });
+  } catch {}
+}
+
+applySavedAppOrder();
+  let isFunctionEditMode = false;
   document.addEventListener("selectstart", (event) => {
   if (event.target.closest(".app-card")) {
     event.preventDefault();
@@ -557,20 +607,79 @@ function stopFunctionEditMode() {
   const appCards = document.querySelectorAll(".app-card");
 appCards.forEach((card) => {
   let pressTimer = null;
-
+let dragMoved = false;
 card.addEventListener("touchstart", (event) => {
   if (event.target.closest(".favorite-toggle")) return;
 
-  pressTimer = setTimeout(() => {
-    startFunctionEditMode();
-  }, 650);
-});
-card.addEventListener("touchend", () => {
-  clearTimeout(pressTimer);
+  dragMoved = false;
 
   if (isFunctionEditMode) {
+    event.preventDefault();
+    card.classList.add("dragging");
+    return;
+  }
+
+  pressTimer = setTimeout(() => {
+    startFunctionEditMode();
+    card.classList.add("dragging");
+  }, 650);
+}, { passive: false });
+
+card.addEventListener("touchmove", (event) => {
+  clearTimeout(pressTimer);
+
+  if (!isFunctionEditMode) return;
+
+  const touch = event.touches[0];
+  if (!touch) return;
+
+  event.preventDefault();
+  dragMoved = true;
+
+  const grid = card.closest(".app-grid");
+
+  const targetCard = document
+    .elementFromPoint(touch.clientX, touch.clientY)
+    ?.closest(".app-card");
+
+  if (
+    !grid ||
+    !targetCard ||
+    targetCard === card ||
+    targetCard.parentElement !== grid
+  ) {
+    return;
+  }
+
+  const targetRect = targetCard.getBoundingClientRect();
+  const cardRect = card.getBoundingClientRect();
+
+  const sameRow =
+    Math.abs(targetRect.top - cardRect.top) <
+    targetRect.height / 2;
+
+  const insertAfter = sameRow
+    ? touch.clientX > targetRect.left + targetRect.width / 2
+    : touch.clientY > targetRect.top + targetRect.height / 2;
+
+  grid.insertBefore(
+    card,
+    insertAfter ? targetCard.nextSibling : targetCard
+  );
+}, { passive: false });
+
+card.addEventListener("touchend", () => {
+  clearTimeout(pressTimer);
+  card.classList.remove("dragging");
+
+  if (isFunctionEditMode) {
+    if (dragMoved) {
+      saveAppOrder();
+    }
+
     const clearAfterTouch = () => {
       const selection = window.getSelection();
+
       if (selection) {
         selection.removeAllRanges();
       }
@@ -581,11 +690,13 @@ card.addEventListener("touchend", () => {
     setTimeout(clearAfterTouch, 50);
     setTimeout(clearAfterTouch, 150);
   }
+
+  setTimeout(() => {
+    dragMoved = false;
+  }, 350);
 });
 
-card.addEventListener("touchmove", () => {
-  clearTimeout(pressTimer);
-});
+  
   const favoriteToggle = document.createElement("span");
 favoriteToggle.className = "favorite-toggle";
 favoriteToggle.textContent = "+";
@@ -613,7 +724,12 @@ renderFavorites();
     updateMainCards();
 renderFavorites();
 });
-    card.addEventListener("click", () => {
+    card.addEventListener("click", (event) => {
+      if (isFunctionEditMode || dragMoved) {
+  event.preventDefault();
+  event.stopPropagation();
+  return;
+}
       if (card.dataset.id === "digital-card") {
   digitalCardModal?.classList.remove("hidden");
 modalBackdrop?.classList.remove("hidden");
