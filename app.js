@@ -76,9 +76,6 @@ quickItems.forEach((item) => {
     }
 
     if (action === "email") {
-      window.location.href = "mailto:samuraiscene@gmail.com";
-    }
-    if (action === "email") {
   window.location.href = "mailto:samuraiscene@gmail.com";
   return;
 }
@@ -89,7 +86,7 @@ if (action === "map") {
 }
 });
   });
-});
+
   const mapModal = document.getElementById("mapModal");
 const openNaverMapButton = document.getElementById("openNaverMapButton");
 const openGoogleMapButton = document.getElementById("openGoogleMapButton");
