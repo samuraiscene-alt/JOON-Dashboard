@@ -959,3 +959,35 @@ body.function-edit-mode .favorite-toggle {
   transform: scale(0.95);
   opacity: 0.78;
 }
+/* ===== 지도 선택 아이콘 최종 강제 스타일 ===== */
+
+#mapModal .modal-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+#mapModal .map-image-button {
+  width: calc(50% - 6px) !important;
+  height: 120px !important;
+  margin: 0 !important;
+  padding: 12px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  border: 1px solid rgba(255,255,255,0.10) !important;
+  border-radius: 20px !important;
+  background: rgba(255,255,255,0.06) !important;
+  overflow: hidden !important;
+}
+
+#mapModal .map-image-button img {
+  width: 76px !important;
+  height: 76px !important;
+  max-width: 76px !important;
+  max-height: 76px !important;
+  object-fit: contain !important;
+  margin: 0 !important;
+}
