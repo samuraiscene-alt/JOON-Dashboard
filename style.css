@@ -991,3 +991,100 @@ body.function-edit-mode .favorite-toggle {
   object-fit: contain !important;
   margin: 0 !important;
 }
+/* ===== 기능 관리 - iPhone 설정 스타일 ===== */
+
+#manageModal .modal-content {
+  padding-top: 16px;
+  max-height: calc(100dvh - 180px);
+  overflow-y: auto;
+}
+
+#manageModal .modal-description {
+  margin: 0 4px 14px;
+  font-size: 13px;
+}
+
+#manageModal .quick-edit-option {
+  min-height: 54px;
+  padding: 0 14px;
+  margin: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+
+  color: var(--text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#manageModal .quick-edit-option:first-of-type {
+  border-radius: 16px 16px 0 0;
+}
+
+#manageModal .quick-edit-option:last-of-type {
+  border-bottom: 0;
+  border-radius: 0 0 16px 16px;
+}
+
+#manageModal .quick-edit-option span {
+  order: 1;
+}
+
+#manageModal .manage-app-checkbox {
+  order: 2;
+
+  -webkit-appearance: none;
+  appearance: none;
+
+  width: 51px;
+  height: 31px;
+  flex: 0 0 51px;
+
+  margin: 0;
+  border: 0;
+  border-radius: 999px;
+
+  background: #3a3d44;
+  position: relative;
+
+  transition: background 0.18s ease;
+}
+
+#manageModal .manage-app-checkbox::after {
+  content: "";
+
+  position: absolute;
+  top: 2px;
+  left: 2px;
+
+  width: 27px;
+  height: 27px;
+
+  border-radius: 50%;
+  background: #ffffff;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+
+  transition: transform 0.18s ease;
+}
+
+#manageModal .manage-app-checkbox:checked {
+  background: #34c759;
+}
+
+#manageModal .manage-app-checkbox:checked::after {
+  transform: translateX(20px);
+}
+
+#manageModal #saveManageAppsButton {
+  margin-top: 18px;
+}
+
+#manageModal #editFunctionsButton {
+  margin-top: 10px;
+}
