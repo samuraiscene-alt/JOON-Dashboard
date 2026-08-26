@@ -342,15 +342,48 @@
     </div>
 
     <div class="modal-content">
-      <p class="modal-description">
-        디지털 명함, 로또, 포트폴리오를 포함한 모든 기능을
-추가·삭제할 수 있습니다.
-      </p>
+  <p class="modal-description">
+    홈 화면에 표시할 기능을 선택하세요.
+  </p>
 
-      <button class="primary-action" type="button" id="editFunctionsButton">
-        기능 편집 시작
-      </button>
-    </div>
+  <label class="quick-edit-option">
+    <input type="checkbox" class="manage-app-checkbox" value="digital-card" checked>
+    <span>디지털 명함</span>
+  </label>
+
+  <label class="quick-edit-option">
+    <input type="checkbox" class="manage-app-checkbox" value="portfolio" checked>
+    <span>포트폴리오</span>
+  </label>
+
+  <label class="quick-edit-option">
+    <input type="checkbox" class="manage-app-checkbox" value="lotto" checked>
+    <span>로또 분석</span>
+  </label>
+
+  <label class="quick-edit-option">
+    <input type="checkbox" class="manage-app-checkbox" value="travel" checked>
+    <span>여행</span>
+  </label>
+
+  <label class="quick-edit-option">
+    <input type="checkbox" class="manage-app-checkbox" value="files" checked>
+    <span>자료 보관</span>
+  </label>
+
+  <label class="quick-edit-option">
+    <input type="checkbox" class="manage-app-checkbox" value="memo" checked>
+    <span>메모</span>
+  </label>
+
+  <button class="primary-action" type="button" id="saveManageAppsButton">
+    저장
+  </button>
+
+  <button class="secondary-action" type="button" id="editFunctionsButton">
+    기능 편집 시작
+  </button>
+</div>
   </div>
   <div class="modal hidden" id="quickEditModal">
   <div class="modal-handle"></div>
