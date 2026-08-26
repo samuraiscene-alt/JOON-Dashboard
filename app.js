@@ -78,8 +78,21 @@ quickItems.forEach((item) => {
     if (action === "email") {
       window.location.href = "mailto:samuraiscene@gmail.com";
     }
+    if (action === "email") {
+  window.location.href = "mailto:samuraiscene@gmail.com";
+  return;
+}
+
+if (action === "map") {
+  openModal(mapModal);
+  return;
+}
+});
   });
 });
+  const mapModal = document.getElementById("mapModal");
+const openNaverMapButton = document.getElementById("openNaverMapButton");
+const openGoogleMapButton = document.getElementById("openGoogleMapButton");
   /* =========================
      모달
   ========================= */
@@ -96,8 +109,19 @@ quickItems.forEach((item) => {
     manageModal?.classList.add("hidden");
     digitalCardModal?.classList.add("hidden");
     favoritesModal?.classList.add("hidden");
+    mapModal?.classList.add("hidden");
     modalBackdrop?.classList.add("hidden");
-  }
+    }
+    openNaverMapButton?.addEventListener("click", () => {
+  closeModals();
+  window.location.href = "https://map.naver.com/";
+});
+
+openGoogleMapButton?.addEventListener("click", () => {
+  closeModals();
+  window.location.href = "https://www.google.com/maps";
+});
+  
 
   themeButton?.addEventListener("click", () => {
     openModal(themeModal);
