@@ -14,7 +14,8 @@ const favoritesModal = document.getElementById("favoritesModal");
   const settingsButton = document.getElementById("settingsButton");
   const addAppButton = document.getElementById("addAppButton");
   const editFunctionsButton = document.getElementById("editFunctionsButton");
-
+const saveManageAppsButton = document.getElementById("saveManageAppsButton");
+const manageAppCheckboxes = document.querySelectorAll(".manage-app-checkbox");
   const chooseBackgroundPhoto = document.getElementById("chooseBackgroundPhoto");
 const removeBackgroundPhoto = document.getElementById("removeBackgroundPhoto");
 const backgroundPhotoInput = document.getElementById("backgroundPhotoInput");
@@ -234,11 +235,38 @@ item.appendChild(removeButton);
 
   localStorage.setItem("joonFavorites", JSON.stringify(favoriteIds));
 }
+const defaultManagedApps = [
+  "digital-card",
+  "portfolio",
+  "lotto",
+  "travel",
+  "files",
+  "memo"
+];
+
+let activeManagedApps = defaultManagedApps;
+
+try {
+  const savedManagedApps = JSON.parse(
+    localStorage.getItem("joonManagedApps")
+  );
+
+  if (Array.isArray(savedManagedApps)) {
+    activeManagedApps = savedManagedApps;
+  }
+} catch {}
+
 function updateMainCards() {
   document.querySelectorAll(".apps-section .app-card").forEach((card) => {
+    const isFavorite = card.dataset.favorite === "true";
+    const isManagedApp = defaultManagedApps.includes(card.dataset.id);
+    const isEnabled =
+      !isManagedApp || activeManagedApps.includes(card.dataset.id);
+
     card.style.display =
-      card.dataset.favorite === "true" ? "none" : "";
+      isFavorite || !isEnabled ? "none" : "";
   });
+}
 }
 function loadFavorites() {
   const favoriteIds = JSON.parse(localStorage.getItem("joonFavorites") || "[]");
@@ -246,7 +274,7 @@ function loadFavorites() {
   document.querySelectorAll(".app-card").forEach(card => {
     card.dataset.favorite = favoriteIds.includes(card.dataset.id) ? "true" : "false";
   });
-
+updateMainCards();
   renderFavorites();
 }
 
@@ -255,8 +283,28 @@ favoritesButton?.addEventListener("click", () => {
   openModal(favoritesModal);
 });
   manageButton?.addEventListener("click", () => {
-    openModal(manageModal);
+  manageAppCheckboxes.forEach((checkbox) => {
+    checkbox.checked = activeManagedApps.includes(checkbox.value);
   });
+
+  openModal(manageModal);
+});
+
+saveManageAppsButton?.addEventListener("click", () => {
+  const selected = [...manageAppCheckboxes]
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.value);
+
+  activeManagedApps = selected;
+
+  localStorage.setItem(
+    "joonManagedApps",
+    JSON.stringify(activeManagedApps)
+  );
+
+  updateMainCards();
+  closeModals();
+});
 
   addAppButton?.addEventListener("click", () => {
   if (isFunctionEditMode) {
