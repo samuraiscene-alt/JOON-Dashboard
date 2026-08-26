@@ -129,7 +129,7 @@ try {
 
 function applyQuickActions() {
   quickItems.forEach((item) => {
-    item.hidden = !activeQuickActions.includes(item.dataset.action);
+    item.style.display = activeQuickActions.includes(item.dataset.action) ? "" : "none";
   });
 }
 
