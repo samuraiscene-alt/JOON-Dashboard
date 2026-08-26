@@ -604,6 +604,51 @@ function stopFunctionEditMode() {
     addAppButton.setAttribute("aria-label", "기능 추가");
   }
 }
+  function animateAppReorder(grid, card, targetCard, insertAfter) {
+  const cards = [...grid.querySelectorAll(".app-card")];
+
+  const beforeRects = new Map(
+    cards.map((item) => [
+      item,
+      item.getBoundingClientRect()
+    ])
+  );
+
+  grid.insertBefore(
+    card,
+    insertAfter ? targetCard.nextSibling : targetCard
+  );
+
+  cards.forEach((item) => {
+    const before = beforeRects.get(item);
+    const after = item.getBoundingClientRect();
+
+    const deltaX = before.left - after.left;
+    const deltaY = before.top - after.top;
+
+    if (
+      Math.abs(deltaX) < 1 &&
+      Math.abs(deltaY) < 1
+    ) {
+      return;
+    }
+
+    item.animate(
+      [
+        {
+          transform: `translate(${deltaX}px, ${deltaY}px)`
+        },
+        {
+          transform: "translate(0, 0)"
+        }
+      ],
+      {
+        duration: 220,
+        easing: "cubic-bezier(0.22, 1, 0.36, 1)"
+      }
+    );
+  });
+}
   const appCards = document.querySelectorAll(".app-card");
 appCards.forEach((card) => {
   let pressTimer = null;
@@ -662,10 +707,12 @@ card.addEventListener("touchmove", (event) => {
     ? touch.clientX > targetRect.left + targetRect.width / 2
     : touch.clientY > targetRect.top + targetRect.height / 2;
 
-  grid.insertBefore(
-    card,
-    insertAfter ? targetCard.nextSibling : targetCard
-  );
+  animateAppReorder(
+  grid,
+  card,
+  targetCard,
+  insertAfter
+);
 }, { passive: false });
 
 card.addEventListener("touchend", () => {
