@@ -34,7 +34,11 @@ const shareVcardButton = document.getElementById("shareVcardButton");
 
   const dots = document.querySelectorAll(".dot");
   const pages = document.querySelectorAll(".app-page");
-const quickItems = document.querySelectorAll(".quick-item");
+const quickItems = document.querySelectorAll(".quick-item"); 
+  const editQuickButton = document.getElementById("editQuickButton");
+const quickEditModal = document.getElementById("quickEditModal");
+const saveQuickEditButton = document.getElementById("saveQuickEditButton");
+const quickEditCheckboxes = document.querySelectorAll('#quickEditModal input[type="checkbox"]');
   /* =========================
      날짜 표시
   ========================= */
@@ -106,9 +110,55 @@ const openGoogleMapButton = document.getElementById("openGoogleMapButton");
     manageModal?.classList.add("hidden");
     digitalCardModal?.classList.add("hidden");
     favoritesModal?.classList.add("hidden");
+    quickEditModal?.classList.add("hidden");
     mapModal?.classList.add("hidden");
     modalBackdrop?.classList.add("hidden");
     }
+  const defaultQuickActions = ["phone", "message", "email", "map"];
+let activeQuickActions = defaultQuickActions;
+
+try {
+  const savedQuickActions = JSON.parse(
+    localStorage.getItem("joonQuickActions")
+  );
+
+  if (Array.isArray(savedQuickActions)) {
+    activeQuickActions = savedQuickActions.slice(0, 4);
+  }
+} catch {}
+
+function applyQuickActions() {
+  quickItems.forEach((item) => {
+    item.hidden = !activeQuickActions.includes(item.dataset.action);
+  });
+}
+
+applyQuickActions();
+
+editQuickButton?.addEventListener("click", () => {
+  quickEditCheckboxes.forEach((checkbox) => {
+    checkbox.checked = activeQuickActions.includes(checkbox.value);
+  });
+
+  openModal(quickEditModal);
+});
+
+saveQuickEditButton?.addEventListener("click", () => {
+  const selected = [...quickEditCheckboxes]
+    .filter((checkbox) => checkbox.checked)
+    .map((checkbox) => checkbox.value)
+    .slice(0, 4);
+
+  activeQuickActions = selected;
+
+  localStorage.setItem(
+    "joonQuickActions",
+    JSON.stringify(activeQuickActions)
+  );
+
+  applyQuickActions();
+  closeModals();
+});
     openNaverMapButton?.addEventListener("click", () => {
   closeModals();
   window.location.href = "nmap://";
