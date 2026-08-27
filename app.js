@@ -41,9 +41,7 @@ const quickEditModal = document.getElementById("quickEditModal");
 const saveQuickEditButton = document.getElementById("saveQuickEditButton");
 const quickEditCheckboxes = document.querySelectorAll('#quickEditModal input[type="checkbox"]');
   
-  const phoneModal = document.getElementById("phoneModal");
-const phoneNumberInput = document.getElementById("phoneNumberInput");
-const callPhoneButton = document.getElementById("callPhoneButton");
+  
   /* =========================
      날짜 표시
   ========================= */
@@ -96,15 +94,7 @@ quickItems.forEach((item) => {
   });
 });
   
-callPhoneButton?.addEventListener("click", () => {
-  const number = phoneNumberInput?.value
-    .trim()
-    .replace(/[^\d+*#]/g, "");
 
-  if (!number) return;
-
-  window.location.href = `tel:${number}`;
-});
   const mapModal = document.getElementById("mapModal");
 const openNaverMapButton = document.getElementById("openNaverMapButton");
 const openGoogleMapButton = document.getElementById("openGoogleMapButton");
