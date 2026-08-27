@@ -820,8 +820,28 @@ document
   .getElementById("closeLottoViewer")
   ?.addEventListener("click", closeLottoViewer);
   openDigitalCardButton?.addEventListener("click", () => {
-  window.location.href = digitalCardUrl;
+  const viewer = document.getElementById("digitalCardViewer");
+
+  if (!viewer) return;
+
+  closeModals();
+
+  viewer.classList.add("open");
+  viewer.setAttribute("aria-hidden", "false");
+  body.classList.add("viewer-open");
 });
+
+document
+  .getElementById("closeDigitalCardViewer")
+  ?.addEventListener("click", () => {
+    const viewer = document.getElementById("digitalCardViewer");
+
+    if (!viewer) return;
+
+    viewer.classList.remove("open");
+    viewer.setAttribute("aria-hidden", "true");
+    body.classList.remove("viewer-open");
+  });
 showDigitalCardQrButton?.addEventListener("click", () => {
   
 
