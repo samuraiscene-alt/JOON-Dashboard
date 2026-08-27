@@ -75,10 +75,9 @@ quickItems.forEach((item) => {
     const action = item.dataset.action;
 
     if (action === "phone") {
-      phoneNumberInput.value = "";
-      openModal(phoneModal);
-      return;
-    }
+  window.location.href = "shortcuts://run-shortcut?name=JOON-Call";
+  return;
+}
 
     if (action === "message") {
       window.location.href = "sms:";
