@@ -7,8 +7,7 @@
 :root {
   --bg: #0f1115;
   --card: #181b21;
-  --card-2: #20242c;
-
+  
   --text: #ffffff;
   --subtext: #9da3ae;
 
@@ -17,8 +16,7 @@
   --border: rgba(255, 255, 255, 0.10);
   --soft: rgba(255, 255, 255, 0.06);
 
-  --radius: 22px;
-}
+  }
 
 html {
   background: var(--bg);
@@ -645,19 +643,16 @@ body.function-edit-mode .app-card * {
 body.theme-navy {
   --bg: #101927;
   --card: #192436;
-  --card-2: #233149;
-}
+  }
 
 body.theme-gray {
   --bg: #2d3036;
   --card: #383c44;
-  --card-2: #424751;
-}
+  }
 
 body.theme-ivory {
   --bg: #ede7db;
   --card: #f7f2e9;
-  --card-2: #ffffff;
 
   --text: #1c1d20;
   --subtext: #696b70;
@@ -698,7 +693,7 @@ body.photo-background .app-shell {
 
 body.photo-background .quick-item,
 body.photo-background .app-card,
-body.photo-background .status-card,
+
 body.photo-background .bottom-nav,
 body.photo-background .icon-button {
   background: rgba(20, 23, 29, 0.78);
@@ -786,15 +781,6 @@ body.function-edit-mode .app-card .app-icon svg,
 body.function-edit-mode .app-card .lotto-symbol {
   animation: appJiggle 0.18s ease-in-out infinite alternate;
   transform-origin: center center;
-}
-
-
-body.function-edit-mode .app-card:nth-child(even) {
-  animation-delay: 0.06s;
-}
-
-body.function-edit-mode .app-card:nth-child(3n) {
-  animation-delay: 0.1s;
 }
 
 @keyframes appJiggle {
