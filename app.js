@@ -782,8 +782,7 @@ renderFavorites();
   return;
 }
       if (card.dataset.id === "digital-card") {
-  digitalCardModal?.classList.remove("hidden");
-modalBackdrop?.classList.remove("hidden");
+  openModal(digitalCardModal);
   return;
 }
       const url = card.dataset.url;
