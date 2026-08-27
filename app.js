@@ -26,7 +26,7 @@ const openDigitalCardButton = document.getElementById("openDigitalCardButton");
 const showDigitalCardQrButton = document.getElementById("showDigitalCardQrButton");
 const digitalCardQrArea = document.getElementById("digitalCardQrArea");
 const digitalCardQrCode = document.getElementById("digitalCardQrCode");
-  
+  const digitalCardUrl = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
   const shareDigitalCardButton = document.getElementById("shareDigitalCardButton");
 const copyDigitalCardLinkButton = document.getElementById("copyDigitalCardLinkButton");
 const shareVcardButton = document.getElementById("shareVcardButton");
@@ -793,10 +793,10 @@ renderFavorites();
     });
   });
   openDigitalCardButton?.addEventListener("click", () => {
-  window.location.href = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
+  window.location.href = digitalCardUrl;
 });
 showDigitalCardQrButton?.addEventListener("click", () => {
-  const cardUrl = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
+  
 
   if (!digitalCardQrArea || !digitalCardQrCode) return;
 
@@ -810,7 +810,7 @@ showDigitalCardQrButton?.addEventListener("click", () => {
   const qrImage = document.createElement("img");
   qrImage.src =
     "https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=" +
-    encodeURIComponent(cardUrl);
+    encodeURIComponent(digitalCardUrl);
 
   qrImage.alt = "신이준 디지털 명함 QR 코드";
 
@@ -837,7 +837,7 @@ showContactQrButton?.addEventListener("click", () => {
     "FN:신이준",
     "TEL;TYPE=CELL:010-5222-7428",
     "EMAIL;TYPE=INTERNET:samuraiscene@gmail.com",
-    "URL:https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/",
+    `URL:${digitalCardUrl}`,
     "END:VCARD"
   ].join("\r\n");
 
@@ -855,32 +855,31 @@ showContactQrButton?.addEventListener("click", () => {
   showContactQrButton.textContent = "연락처 QR 닫기";
 });
 shareDigitalCardButton?.addEventListener("click", async () => {
-  const cardUrl = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
-
+  
   if (navigator.share) {
     try {
       await navigator.share({
         title: "신이준 디지털 명함",
         text: "신이준의 디지털 명함입니다.",
-        url: cardUrl
+        url: digitalCardUrl
       });
     } catch (error) {
       console.log("공유 취소:", error);
     }
   } else {
-    await navigator.clipboard.writeText(cardUrl);
+    await navigator.clipboard.writeText(digitalCardUrl);
     alert("디지털 명함 링크가 복사되었습니다.");
   }
 });
 copyDigitalCardLinkButton?.addEventListener("click", async () => {
-  const cardUrl = "https://samuraiscene-alt.github.io/SHINeJOON-Digital-Card/";
+  
 
   try {
     if (navigator.clipboard && window.isSecureContext) {
-      await navigator.clipboard.writeText(cardUrl);
+      await navigator.clipboard.writeText(digitalCardUrl);
     } else {
       const textArea = document.createElement("textarea");
-      textArea.value = cardUrl;
+      textArea.value = digitalCardUrl;
       textArea.style.position = "fixed";
       textArea.style.left = "-9999px";
       document.body.appendChild(textArea);
