@@ -772,22 +772,53 @@ renderFavorites();
 renderFavorites();
 });
     card.addEventListener("click", (event) => {
-      if (isFunctionEditMode || dragMoved) {
-  event.preventDefault();
-  event.stopPropagation();
-  return;
-}
-      if (card.dataset.id === "digital-card") {
-  openModal(digitalCardModal);
-  return;
-}
-      const url = card.dataset.url;
+  if (isFunctionEditMode || dragMoved) {
+    event.preventDefault();
+    event.stopPropagation();
+    return;
+  }
 
-      if (url && url !== "#") {
-        window.location.href = url;
-      }
-    });
-  });
+  if (card.dataset.id === "digital-card") {
+    openModal(digitalCardModal);
+    return;
+  }
+
+  if (card.dataset.id === "lotto") {
+    openLottoViewer();
+    return;
+  }
+
+  const url = card.dataset.url;
+
+  if (url && url !== "#") {
+    window.location.href = url;
+  }
+});
+});
+
+function openLottoViewer() {
+  const viewer = document.getElementById("lottoViewer");
+
+  if (!viewer) return;
+
+  viewer.classList.add("open");
+  viewer.setAttribute("aria-hidden", "false");
+  body.classList.add("viewer-open");
+}
+
+function closeLottoViewer() {
+  const viewer = document.getElementById("lottoViewer");
+
+  if (!viewer) return;
+
+  viewer.classList.remove("open");
+  viewer.setAttribute("aria-hidden", "true");
+  body.classList.remove("viewer-open");
+}
+
+document
+  .getElementById("closeLottoViewer")
+  ?.addEventListener("click", closeLottoViewer);
   openDigitalCardButton?.addEventListener("click", () => {
   window.location.href = digitalCardUrl;
 });
