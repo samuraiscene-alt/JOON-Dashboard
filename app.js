@@ -114,7 +114,7 @@ const openGoogleMapButton = document.getElementById("openGoogleMapButton");
     manageModal?.classList.add("hidden");
     digitalCardModal?.classList.add("hidden");
     favoritesModal?.classList.add("hidden");
-    phoneModal?.classList.add("hidden");
+    
     quickEditModal?.classList.add("hidden");
     mapModal?.classList.add("hidden");
     modalBackdrop?.classList.add("hidden");
