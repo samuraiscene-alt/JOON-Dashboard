@@ -11,7 +11,6 @@ const favoritesModal = document.getElementById("favoritesModal");
   const modalBackdrop = document.getElementById("modalBackdrop");
 
   const manageButton = document.getElementById("manageButton");
-  const settingsButton = document.getElementById("settingsButton");
   const addAppButton = document.getElementById("addAppButton");
   const editFunctionsButton = document.getElementById("editFunctionsButton");
 const saveManageAppsButton = document.getElementById("saveManageAppsButton");
@@ -179,10 +178,7 @@ openGoogleMapButton?.addEventListener("click", () => {
     openModal(themeModal);
   });
 
-  settingsButton?.addEventListener("click", () => {
-    openModal(themeModal);
-  });
-  function renderFavorites() {
+    function renderFavorites() {
   if (!favoritesList) return;
 
   favoritesList.innerHTML = "";
