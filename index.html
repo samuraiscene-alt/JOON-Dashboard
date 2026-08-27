@@ -425,6 +425,43 @@
     </button>
   </div>
 </div>
+  <div class="modal hidden" id="phoneModal">
+  <div class="modal-handle"></div>
+
+  <div class="modal-header">
+    <h3>전화</h3>
+    <button
+      class="close-button"
+      type="button"
+      data-close-modal
+    >
+      ×
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <p class="modal-description">
+      전화할 번호를 입력하세요.
+    </p>
+
+    <input
+      class="phone-number-input"
+      id="phoneNumberInput"
+      type="tel"
+      inputmode="tel"
+      autocomplete="tel"
+      placeholder="전화번호"
+    />
+
+    <button
+      class="primary-action"
+      type="button"
+      id="callPhoneButton"
+    >
+      통화
+    </button>
+  </div>
+</div>
   <div class="modal hidden" id="mapModal">
   <div class="modal-handle"></div>
 
