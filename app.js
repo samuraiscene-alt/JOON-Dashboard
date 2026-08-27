@@ -40,6 +40,10 @@ const quickItems = document.querySelectorAll(".quick-item");
 const quickEditModal = document.getElementById("quickEditModal");
 const saveQuickEditButton = document.getElementById("saveQuickEditButton");
 const quickEditCheckboxes = document.querySelectorAll('#quickEditModal input[type="checkbox"]');
+  
+  const phoneModal = document.getElementById("phoneModal");
+const phoneNumberInput = document.getElementById("phoneNumberInput");
+const callPhoneButton = document.getElementById("callPhoneButton");
   /* =========================
      날짜 표시
   ========================= */
@@ -71,27 +75,37 @@ quickItems.forEach((item) => {
     const action = item.dataset.action;
 
     if (action === "phone") {
-      window.location.href = "tel:01052227428";
+      phoneNumberInput.value = "";
+      openModal(phoneModal);
       return;
     }
 
     if (action === "message") {
-      window.location.href = "sms:01052227428";
+      window.location.href = "sms:";
       return;
     }
 
     if (action === "email") {
-  window.location.href = "mailto:samuraiscene@gmail.com";
-  return;
-}
+      window.location.href = "mailto:";
+      return;
+    }
 
-if (action === "map") {
-  openModal(mapModal);
-  return;
-}
-});
+    if (action === "map") {
+      openModal(mapModal);
+      return;
+    }
   });
+});
+  
+callPhoneButton?.addEventListener("click", () => {
+  const number = phoneNumberInput?.value
+    .trim()
+    .replace(/[^\d+*#]/g, "");
 
+  if (!number) return;
+
+  window.location.href = `tel:${number}`;
+});
   const mapModal = document.getElementById("mapModal");
 const openNaverMapButton = document.getElementById("openNaverMapButton");
 const openGoogleMapButton = document.getElementById("openGoogleMapButton");
@@ -111,6 +125,7 @@ const openGoogleMapButton = document.getElementById("openGoogleMapButton");
     manageModal?.classList.add("hidden");
     digitalCardModal?.classList.add("hidden");
     favoritesModal?.classList.add("hidden");
+    phoneModal?.classList.add("hidden");
     quickEditModal?.classList.add("hidden");
     mapModal?.classList.add("hidden");
     modalBackdrop?.classList.add("hidden");
