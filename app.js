@@ -595,7 +595,24 @@ function applySavedAppOrder() {
   } catch {}
 }
 
+function enforceAppPageCapacity() {
+  const cards = appGrids.flatMap((grid) =>
+    [...grid.querySelectorAll(".app-card")]
+  );
+
+  cards.forEach((card, index) => {
+    const targetGrid = appGrids[Math.floor(index / 6)];
+
+    if (targetGrid) {
+      targetGrid.appendChild(card);
+    }
+  });
+
+  saveAppOrder();
+}
+
 applySavedAppOrder();
+enforceAppPageCapacity();
   let isFunctionEditMode = false;
   document.addEventListener("selectstart", (event) => {
   if (event.target.closest(".app-card")) {
