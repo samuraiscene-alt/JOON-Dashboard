@@ -210,6 +210,21 @@
               <span class="app-name">메모</span>
             </button>
 
+            <button
+              class="app-card"
+              data-id="joon-player"
+              data-url="https://samuraiscene-alt.github.io/JOON-Player/"
+              type="button"
+            >
+              <span class="app-icon">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <circle cx="12" cy="12" r="8"></circle>
+                  <path d="M10 8.5l5.5 3.5-5.5 3.5z"></path>
+                </svg>
+              </span>
+              <span class="app-name">JOON Player</span>
+            </button>
+
           </div>
         </div>
 
@@ -361,6 +376,11 @@
   <label class="quick-edit-option">
     <input type="checkbox" class="manage-app-checkbox" value="memo" checked>
     <span>메모</span>
+  </label>
+
+  <label class="quick-edit-option">
+    <input type="checkbox" class="manage-app-checkbox" value="joon-player" checked>
+    <span>JOON Player</span>
   </label>
 
   <button class="primary-action" type="button" id="saveManageAppsButton">
@@ -571,6 +591,27 @@
     ×
   </button>
 </div>
-  <script src="app.js?v=25"></script>
+<div
+  id="joonPlayerViewer"
+  class="app-viewer"
+  aria-hidden="true"
+>
+  <iframe
+    id="joonPlayerFrame"
+    class="app-viewer-frame"
+    src="https://samuraiscene-alt.github.io/JOON-Player/"
+    title="JOON Player"
+  ></iframe>
+
+  <button
+    id="closeJoonPlayerViewer"
+    class="app-viewer-close"
+    type="button"
+    aria-label="JOON Player 닫기"
+  >
+    ×
+  </button>
+</div>
+  <script src="app.js?v=26"></script>
 </body>
 </html>
