@@ -241,10 +241,11 @@ const defaultManagedApps = [
   "lotto",
   "travel",
   "files",
-  "memo"
+  "memo",
+  "joon-player"
 ];
 
-let activeManagedApps = defaultManagedApps;
+let activeManagedApps = [...defaultManagedApps];
 
 try {
   const savedManagedApps = JSON.parse(
@@ -253,6 +254,34 @@ try {
 
   if (Array.isArray(savedManagedApps)) {
     activeManagedApps = savedManagedApps;
+
+    const managedAppsVersion = Number(
+      localStorage.getItem("joonManagedAppsVersion") || "1"
+    );
+
+    if (managedAppsVersion < 2) {
+      if (!activeManagedApps.includes("joon-player")) {
+        activeManagedApps = [
+          ...activeManagedApps,
+          "joon-player"
+        ];
+      }
+
+      localStorage.setItem(
+        "joonManagedApps",
+        JSON.stringify(activeManagedApps)
+      );
+
+      localStorage.setItem(
+        "joonManagedAppsVersion",
+        "2"
+      );
+    }
+  } else {
+    localStorage.setItem(
+      "joonManagedAppsVersion",
+      "2"
+    );
   }
 } catch {}
 
@@ -554,6 +583,14 @@ function applySavedAppOrder() {
           grid.appendChild(card);
         }
       });
+
+      const savedIds = new Set(ids);
+
+      [...grid.querySelectorAll(".app-card")]
+        .filter((card) => !savedIds.has(card.dataset.id))
+        .forEach((card) => {
+          grid.appendChild(card);
+        });
     });
   } catch {}
 }
@@ -788,6 +825,11 @@ renderFavorites();
     return;
   }
 
+  if (card.dataset.id === "joon-player") {
+    openJoonPlayerViewer();
+    return;
+  }
+
   const url = card.dataset.url;
 
   if (url && url !== "#") {
@@ -819,6 +861,30 @@ function closeLottoViewer() {
 document
   .getElementById("closeLottoViewer")
   ?.addEventListener("click", closeLottoViewer);
+
+function openJoonPlayerViewer() {
+  const viewer = document.getElementById("joonPlayerViewer");
+
+  if (!viewer) return;
+
+  viewer.classList.add("open");
+  viewer.setAttribute("aria-hidden", "false");
+  body.classList.add("viewer-open");
+}
+
+function closeJoonPlayerViewer() {
+  const viewer = document.getElementById("joonPlayerViewer");
+
+  if (!viewer) return;
+
+  viewer.classList.remove("open");
+  viewer.setAttribute("aria-hidden", "true");
+  body.classList.remove("viewer-open");
+}
+
+document
+  .getElementById("closeJoonPlayerViewer")
+  ?.addEventListener("click", closeJoonPlayerViewer);
   openDigitalCardButton?.addEventListener("click", () => {
   const viewer = document.getElementById("digitalCardViewer");
 
